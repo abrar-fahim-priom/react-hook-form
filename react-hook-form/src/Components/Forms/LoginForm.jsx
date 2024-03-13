@@ -7,10 +7,23 @@ export default function LoginFrom() {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm();
 
   const submitForm = (formData) => {
     console.log(formData);
+
+    const user = { email: "x@gmail.com", password: 1223456789 };
+
+    const found =
+      formData.email === user.email && formData.password === user.password;
+    //global error handling, valuating user
+    if (!found) {
+      setError("root.random", {
+        message: `User with ${formData.email} is not found`,
+        type: "User error",
+      });
+    }
   };
 
   return (
@@ -43,14 +56,17 @@ export default function LoginFrom() {
             className={`p-1 border border-box w-[300px] rounded-md ${
               errors.password ? "border-red-500" : "border-gray-400"
             } `}
-            type="Password"
-            name="Password"
-            id="Password"
+            type="password"
+            name="password"
+            id="password"
             placeholder="Enter Password"
           />
         </Field>
+
+        <div> {errors?.root?.random?.message} </div>
+
         <Field>
-          <button className="text-lg text-white cursor-pointer p-1 border rounded-lg bg-purple-400">
+          <button className="text-lg m-auto text-white cursor-pointer p-1 border rounded-lg bg-purple-400">
             Login
           </button>
         </Field>

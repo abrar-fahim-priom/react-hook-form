@@ -1,5 +1,5 @@
-import LoginFrom from "./Components/Forms/LoginForm";
+import RegistrationForm from "./Components/Forms/RegistrationForm";
 
 export default function App() {
-  return <LoginFrom />;
+  return <RegistrationForm />;
 }
